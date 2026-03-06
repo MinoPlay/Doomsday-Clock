@@ -54,7 +54,17 @@ let modalAmPm = 'AM';
     ampm,
   };
 
+  state.departed = {
+    month: 'OCT',
+    day:   26,
+    year:  2054,
+    hour:  12,
+    min:   0,
+    ampm:  'AM',
+  };
+
   renderRow('present');
+  renderRow('departed');
 })();
 
 /* ──────────────────────────────────────────
