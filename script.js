@@ -28,7 +28,7 @@ let modalAmPm = 'AM';
    Initialise: load Present Time from clock
 ────────────────────────────────────────── */
 (function init() {
-  const now = new Date();
+  const now = new Date(2055, 2, 12); // default: Mar 12 2055
   const h24  = now.getHours();
   const ampm = h24 < 12 ? 'AM' : 'PM';
   const h12  = h24 % 12 === 0 ? 12 : h24 % 12;
