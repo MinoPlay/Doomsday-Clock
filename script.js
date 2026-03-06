@@ -5,6 +5,18 @@
 const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN',
                 'JUL','AUG','SEP','OCT','NOV','DEC'];
 
+/* Populate year <select> with 1885 – 2155 */
+(function populateYearSelect() {
+  const sel = document.getElementById('input-year');
+  for (let y = 1885; y <= 2155; y++) {
+    const opt = document.createElement('option');
+    opt.value = y;
+    opt.textContent = String(y).padStart(4, '0');
+    sel.appendChild(opt);
+  }
+  sel.value = 1985; // sensible default
+})();
+
 // Row colour used for CSS variable injection
 const ROW_COLORS = {
   destination: '#FF5500',
@@ -112,14 +124,14 @@ function openModal(row) {
     document.getElementById('input-day').value   = s.day;
     document.getElementById('input-year').value  = s.year;
     document.getElementById('input-hour').value  = s.hour;
-    document.getElementById('input-min').value   = String(s.min).padStart(2, '0');
+    document.getElementById('input-min').value   = s.min;
     modalAmPm = s.ampm;
   } else {
     document.getElementById('input-month').value = 'JAN';
-    document.getElementById('input-day').value   = '';
-    document.getElementById('input-year').value  = '';
-    document.getElementById('input-hour').value  = '';
-    document.getElementById('input-min').value   = '';
+    document.getElementById('input-day').value   = '1';
+    document.getElementById('input-year').value  = '1985';
+    document.getElementById('input-hour').value  = '12';
+    document.getElementById('input-min').value   = '0';
     modalAmPm = 'AM';
   }
 
@@ -130,8 +142,8 @@ function openModal(row) {
   // Show
   document.getElementById('modal-overlay').classList.add('visible');
 
-  // Focus first input
-  setTimeout(() => document.getElementById('input-day').focus(), 50);
+  // Focus month select
+  setTimeout(() => document.getElementById('input-month').focus(), 50);
 }
 
 function applyModalColor(color) {

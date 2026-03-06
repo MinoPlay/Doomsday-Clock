@@ -272,7 +272,7 @@ body {
    MODAL BOX
 ═══════════════════════════════════════════ */
 .modal-box {
-  width: 520px;
+  width: 720px;
   max-width: 96vw;
   padding: 22px 26px 24px;
   background:
@@ -334,8 +334,13 @@ body {
   align-items: center;
   gap: 5px;
   flex: 1;
-  min-width: 70px;
-  max-width: 100px;
+  min-width: 80px;
+  max-width: 110px;
+}
+.field-group.wide-field {
+  min-width: 110px;
+  max-width: 150px;
+  flex: 1.5;
 }
 
 .field-label-badge {
@@ -376,12 +381,18 @@ body {
     0 0 6px var(--row-color, #888);
 }
 
-/* Month uses normal font (not 7-seg) */
+/* All selects in modal */
 select.field-input {
-  font-family: 'DSEG14Classic', monospace;
-  font-size: 1.2rem;
+  font-family: 'DSEG7Classic', monospace;
+  font-size: 1.4rem;
   cursor: pointer;
   -webkit-appearance: none;
+  appearance: none;
+}
+/* Month uses 14-seg font */
+#input-month.field-input {
+  font-family: 'DSEG14Classic', monospace;
+  font-size: 1.2rem;
 }
 select.field-input option {
   background: #111;
@@ -390,6 +401,7 @@ select.field-input option {
   font-size: 1rem;
 }
 
+/* legacy, kept for safety */
 .wide-input { max-width: 110px; }
 
 /* ── AM/PM toggle ── */
