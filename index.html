@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Circuits</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- DSEG7 Classic for digits, DSEG14 Classic for month letters -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @font-face {
+      font-family: 'DSEG7Classic';
+      src: url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff2') format('woff2');
+      font-style: normal;
+      font-weight: normal;
+    }
+    @font-face {
+      font-family: 'DSEG14Classic';
+      src: url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG14-Classic/DSEG14Classic-Regular.woff2') format('woff2');
+      font-style: normal;
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+  <div class="board">
+
+    <!-- ── DESTINATION TIME ── -->
+    <div class="row-panel" id="panel-destination">
+      <div class="cells-row">
+        <div class="cell-group">
+          <div class="cell-label">MONTH</div>
+          <div class="cell-display seg14" id="dest-month">---</div>
+        </div>
+        <div class="cell-group">
+          <div class="cell-label">DAY</div>
+          <div class="cell-display seg7" id="dest-day">--</div>
+        </div>
+        <div class="cell-group wide">
+          <div class="cell-label">YEAR</div>
+          <div class="cell-display seg7" id="dest-year">----</div>
+        </div>
+        <div class="ampm-group">
+          <div class="ampm-dot" id="dest-am">AM</div>
+          <div class="ampm-dot" id="dest-pm">PM</div>
+        </div>
+        <div class="cell-group">
+          <div class="cell-label">HOUR</div>
+          <div class="cell-display seg7" id="dest-hour">--</div>
+        </div>
+        <div class="cell-group">
+          <div class="cell-label">MIN</div>
+          <div class="cell-display seg7" id="dest-min">--</div>
+        </div>
+      </div>
+      <button class="row-label-bar" onclick="openModal('destination')">DESTINATION TIME</button>
+    </div>
+
+    <!-- ── PRESENT TIME ── -->
+    <div class="row-panel" id="panel-present">
+      <div class="cells-row">
+        <div class="cell-group">
+          <div class="cell-label">MONTH</div>
+          <div class="cell-display seg14" id="present-month">---</div>
+        </div>
+        <div class="cell-group">
+          <div class="cell-label">DAY</div>
+          <div class="cell-display seg7" id="present-day">--</div>
+        </div>
+        <div class="cell-group wide">
+          <div class="cell-label">YEAR</div>
+          <div class="cell-display seg7" id="present-year">----</div>
+        </div>
+        <div class="ampm-group">
+          <div class="ampm-dot" id="present-am">AM</div>
+          <div class="ampm-dot" id="present-pm">PM</div>
+        </div>
+        <div class="cell-group">
+          <div class="cell-label">HOUR</div>
+          <div class="cell-display seg7" id="present-hour">--</div>
+        </div>
+        <div class="cell-group">
+          <div class="cell-label">MIN</div>
+          <div class="cell-display seg7" id="present-min">--</div>
+        </div>
+      </div>
+      <button class="row-label-bar" onclick="openModal('present')">PRESENT TIME</button>
+    </div>
+
+    <!-- ── LAST TIME DEPARTED ── -->
+    <div class="row-panel" id="panel-departed">
+      <div class="cells-row">
+        <div class="cell-group">
+          <div class="cell-label">MONTH</div>
+          <div class="cell-display seg14" id="departed-month">---</div>
+        </div>
+        <div class="cell-group">
+          <div class="cell-label">DAY</div>
+          <div class="cell-display seg7" id="departed-day">--</div>
+        </div>
+        <div class="cell-group wide">
+          <div class="cell-label">YEAR</div>
+          <div class="cell-display seg7" id="departed-year">----</div>
+        </div>
+        <div class="ampm-group">
+          <div class="ampm-dot" id="departed-am">AM</div>
+          <div class="ampm-dot" id="departed-pm">PM</div>
+        </div>
+        <div class="cell-group">
+          <div class="cell-label">HOUR</div>
+          <div class="cell-display seg7" id="departed-hour">--</div>
+        </div>
+        <div class="cell-group">
+          <div class="cell-label">MIN</div>
+          <div class="cell-display seg7" id="departed-min">--</div>
+        </div>
+      </div>
+      <button class="row-label-bar" onclick="openModal('departed')">LAST TIME DEPARTED</button>
+    </div>
+
+  </div><!-- /board -->
+
+  <!-- ══════════════════ MODAL ══════════════════ -->
+  <div class="modal-overlay" id="modal-overlay" onclick="overlayClick(event)">
+    <div class="modal-box" id="modal-box">
+
+      <div class="modal-title" id="modal-title">DESTINATION TIME</div>
+      <div class="modal-subtitle">SET DATE &amp; TIME</div>
+
+      <div class="modal-fields">
+
+        <div class="field-group">
+          <div class="field-label-badge">MONTH</div>
+          <select class="field-input" id="input-month">
+            <option value="JAN">JAN</option>
+            <option value="FEB">FEB</option>
+            <option value="MAR">MAR</option>
+            <option value="APR">APR</option>
+            <option value="MAY">MAY</option>
+            <option value="JUN">JUN</option>
+            <option value="JUL">JUL</option>
+            <option value="AUG">AUG</option>
+            <option value="SEP">SEP</option>
+            <option value="OCT">OCT</option>
+            <option value="NOV">NOV</option>
+            <option value="DEC">DEC</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-badge">DAY</div>
+          <input class="field-input" id="input-day" type="number" min="1" max="31" placeholder="01" />
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-badge">YEAR</div>
+          <input class="field-input wide-input" id="input-year" type="number" min="1" max="9999" placeholder="1985" />
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-badge">HOUR</div>
+          <input class="field-input" id="input-hour" type="number" min="1" max="12" placeholder="01" />
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-badge">MIN</div>
+          <input class="field-input" id="input-min" type="number" min="0" max="59" placeholder="00" />
+        </div>
+
+        <div class="field-group">
+          <div class="field-label-badge">AM / PM</div>
+          <div class="ampm-toggle">
+            <button class="ampm-btn" id="btn-am" onclick="selectAmPm('AM')">AM</button>
+            <button class="ampm-btn" id="btn-pm" onclick="selectAmPm('PM')">PM</button>
+          </div>
+        </div>
+
+      </div><!-- /modal-fields -->
+
+      <div class="modal-error" id="modal-error"></div>
+
+      <div class="modal-actions">
+        <button class="action-btn cancel-btn" onclick="closeModal()">CANCEL</button>
+        <button class="action-btn set-btn" id="set-btn" onclick="confirmModal()">SET TIME</button>
+      </div>
+
+    </div>
+  </div><!-- /modal-overlay -->
+
+  <script src="script.js"></script>
+</body>
+</html>
