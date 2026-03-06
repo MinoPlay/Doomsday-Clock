@@ -40,8 +40,9 @@ let modalAmPm = 'AM';
    Initialise: load Present Time from clock
 ────────────────────────────────────────── */
 (function init() {
-  const now = new Date(2055, 2, 12); // default: Mar 12 2055
-  const h24  = now.getHours();
+  const now     = new Date(2055, 2, 12); // default: Mar 12 2055
+  const realNow = new Date();
+  const h24  = realNow.getHours();
   const ampm = h24 < 12 ? 'AM' : 'PM';
   const h12  = h24 % 12 === 0 ? 12 : h24 % 12;
 
@@ -50,17 +51,22 @@ let modalAmPm = 'AM';
     day:   now.getDate(),
     year:  now.getFullYear(),
     hour:  h12,
-    min:   now.getMinutes(),
+    min:   realNow.getMinutes(),
     ampm,
   };
+
+  const randH24  = Math.floor(Math.random() * 24);
+  const dAmpm    = randH24 < 12 ? 'AM' : 'PM';
+  const dH12     = randH24 % 12 === 0 ? 12 : randH24 % 12;
+  const dMin     = Math.floor(Math.random() * 60);
 
   state.departed = {
     month: 'OCT',
     day:   26,
     year:  2054,
-    hour:  12,
-    min:   0,
-    ampm:  'AM',
+    hour:  dH12,
+    min:   dMin,
+    ampm:  dAmpm,
   };
 
   renderRow('present');
